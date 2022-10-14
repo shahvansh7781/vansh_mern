@@ -2,128 +2,266 @@
   padding: 0 2rem;
 }
 
-.main {
-  min-height: 100vh;
-  padding: 4rem 0;
-  flex: 1;
+.myUncode {
+  margin-left: 7vmin;
+  color: #446e90;
+}
+.main p {
+  margin-left: 7vmin;
+}
+.myH3 {
+  font-size: 2vmin;
+  color: #79a49c;
+}
+.myH1 {
+  font-size: 3vmin;
+  color: #446e90;
+}
+.myForm {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-evenly;
+  width: 100%;
+}
+.myLabel {
+  font-size: 2vmin;
 }
 
+.infoDiv {
+  display: flex;
+  flex-direction: column;
+}
+
+.headingDiv {
+  display: flex;
+  flex-direction: column;
+  padding: 4vmin;
+  width: 50%;
+}
+
+.parentDiv {
+  display: flex;
+  width: 40vmax;
+  justify-content: space-between;
+  height: 36vmin;
+}
+
+.childDiv {
+  display: flex;
+  flex-direction: column;
+  height: 38vmin;
+  /* width: fit-content; */
+  justify-content: space-evenly;
+}
+
+.buttonDiv {
+  display: flex;
+  margin-top: 3vmin;
+  justify-content: space-evenly;
+  width: 40vmax;
+}
+
+.myButton {
+  font-size: 1.9vmin;
+  padding: 2vmin;
+  border-radius: 13px;
+  background-color: #e0ebea;
+  width: 14vmax;
+  text-align: center;
+}
+.myButton:hover {
+  /* background: #3cb0fd; */
+  transition: 0.2s;
+  background: #e0ebea;
+  /* background-image: linear-gradient(to bottom, #e0ebea, #8bb3af); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.myInput {
+  font-size: 1.6vmin;
+  width: 18vmax;
+  padding: 1vmax;
+  border: none;
+  border-radius: 14px;
+  /* box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px; */
+  /* background-color: #f5f5f5; */
+  /* background-color: #e0ebea; */
+  background-color: #f6f8fa;
+}
+.myInput::placeholder {
+  opacity: 0.6;
+}
+.myInput:focus {
+  /* outline-color: #446e90; */
+  outline-color: #b9c5c4;
+  background-color: white;
+}
 .footer {
   display: flex;
-  flex: 1;
+  /* flex: 1; */
   padding: 2rem 0;
   border-top: 1px solid #eaeaea;
   justify-content: center;
   align-items: center;
 }
 
-.footer a {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
-
-.title a {
-  color: #0070f3;
-  text-decoration: none;
-}
-
-.title a:hover,
-.title a:focus,
-.title a:active {
-  text-decoration: underline;
-}
-
-.title {
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-}
-
-.title,
-.description {
-  text-align: center;
-}
-
-.description {
-  margin: 4rem 0;
-  line-height: 1.5;
-  font-size: 1.5rem;
-}
-
-.code {
-  background: #fafafa;
-  border-radius: 5px;
-  padding: 0.75rem;
-  font-size: 1.1rem;
-  font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
-    Bitstream Vera Sans Mono, Courier New, monospace;
-}
-
-.grid {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  max-width: 800px;
-}
-
-.card {
-  margin: 1rem;
-  padding: 1.5rem;
-  text-align: left;
-  color: inherit;
-  text-decoration: none;
-  border: 1px solid #eaeaea;
-  border-radius: 10px;
-  transition: color 0.15s ease, border-color 0.15s ease;
-  max-width: 300px;
-}
-
-.card:hover,
-.card:focus,
-.card:active {
-  color: #0070f3;
-  border-color: #0070f3;
-}
-
-.card h2 {
-  margin: 0 0 1rem 0;
-  font-size: 1.5rem;
-}
-
-.card p {
-  margin: 0;
-  font-size: 1.25rem;
-  line-height: 1.5;
-}
 
 .logo {
   height: 1em;
   margin-left: 0.5rem;
 }
 
-@media (max-width: 600px) {
-  .grid {
+@media screen and (min-width: 300px) and (max-width: 767px) {
+  .myForm {
+    flex-flow: column wrap;
+    justify-content: center;
+  }
+  .myInput {
+    font-size: 2.5vmin;
+    width: 40vmin;
+    padding: 2vmin;
+  }
+  .myLabel {
+    font-size: 2.7vmin;
+  }
+  .headingDiv {
+    padding: 0;
     width: 100%;
-    flex-direction: column;
+  }
+  .childDiv {
+    height: 50vmin;
+  }
+  .myButton {
+    font-size: 2.5vmin;
+    width: 33vmin;
+    padding: 4vmin 1vmin;
+  }
+  .buttonDiv {
+    display: flex;
+    margin-top: 18vmin;
+    width: 100%;
+    justify-content: space-evenly;
+  }
+  .main p {
+    font-size: 3.6vmin;
+  }
+  .parentDiv {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .myH3 {
+    font-size: 3vmin;
+  }
+  .myH1 {
+    font-size: 4vmin;
+  }
+  .footer {
+    margin-top: 20px;
   }
 }
-
-@media (prefers-color-scheme: dark) {
-  .card,
+@media screen and (min-width: 768px) and (max-width: 881px) {
+  .myH3 {
+    font-size: 1.8vmin;
+  }
+  .myH1 {
+    font-size: 2.2vmin;
+  }
+  .headingDiv {
+    padding: 0vmin;
+  }
+  .childDiv {
+    height: 28vmin;
+  }
+  .parentDiv {
+    height: 26vmin;
+  }
+  .myButton {
+    font-size: 1.5vmin;
+    width: 20vmin;
+    padding: 2.4vmin 0;
+  }
+  .myLabel {
+    font-size: 1.7vmin;
+  }
+  .myInput {
+    font-size: 1.6vmin;
+    padding: 1.7vmin;
+    width: 19vmax;
+  }
+  .buttonDiv {
+    margin-top: 4.4vmin;
+  }
   .footer {
-    border-color: #222;
+    margin-top: 10vmin;
   }
-  .code {
-    background: #111;
+}
+@media screen and (min-width: 882px) and (max-width: 1024px) {
+  .myH3 {
+    font-size: 2vmin;
   }
-  .logo img {
-    filter: invert(1);
+  .myH1 {
+    font-size: 2.4vmin;
+  }
+  .headingDiv {
+    padding: 1.3vmin;
+  }
+  .childDiv {
+    height: 34vmin;
+  }
+  .parentDiv {
+    height: 30vmin;
+  }
+  .myButton {
+    font-size: 1.7vmin;
+    width: 22vmin;
+    padding: 2.6vmin 0;
+  }
+  .myLabel {
+    font-size: 1.9vmin;
+  }
+  .myInput {
+    font-size: 1.9vmin;
+    padding: 1.9vmin;
+    width: 19.3vmax;
+  }
+  .buttonDiv {
+    margin-top: 4.7vmin;
+  }
+  .footer {
+    margin-top: 6vmin;
+  }
+}
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .myH3 {
+    font-size: 2.3vmin;
+  }
+  .myH1 {
+    font-size: 2.7vmin;
+  }
+  .headingDiv {
+    padding: 1.4vmin;
+  }
+  .childDiv {
+    height: 41vmin;
+  }
+  .parentDiv {
+    height: 36vmin;
+  }
+  .myButton {
+    font-size: 1.8vmin;
+    width: 25vmin;
+    padding: 2.6vmin 0;
+  }
+  .myLabel {
+    font-size: 2.2vmin;
+  }
+  .myInput {
+    font-size: 2.1vmin;
+    padding: 1.9vmin;
+    width: 19vmax;
+  }
+  .buttonDiv {
+    margin-top: 5.7vmin;
+  }
+  .footer {
+    margin-top: 6vmin;
   }
 }

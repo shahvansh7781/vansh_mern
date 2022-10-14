@@ -1,0 +1,153 @@
+.container {
+  padding: 1rem 2rem;
+}
+.myH1 {
+  font-size: 5.3vmin;
+  font-weight: bold;
+}
+.myH3 {
+  font-size: 2.2vmin;
+}
+.myParentDiv {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+.myInput {
+  font-size: 1.9vmin;
+  width: 22vmax;
+  padding: 1.3vmax;
+  border: none;
+  border-radius: 14px;
+  /* box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px; */
+  /* background-color: #f5f5f5; */
+  /* background-color: #e0ebea; */
+  background-color: #f6f8fa;
+}
+.myInput::placeholder {
+  opacity: 0.6;
+}
+.myInput:focus {
+  /* outline-color: #446e90; */
+  outline-color: #b9c5c4;
+  background-color: white;
+}
+.myButton {
+  font-size: 1.9vmin;
+  padding: 2vmin;
+  border-radius: 13px;
+  background-color: #e0ebea;
+  width: 10vmax;
+  text-align: center;
+}
+.myButton:hover {
+  /* background: #3cb0fd; */
+  transition: 0.2s;
+  background: #e0ebea;
+  /* background-image: linear-gradient(to bottom, #e0ebea, #8bb3af); */
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.childDiv2 {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  height: 41vmax;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.childDiv1 {
+  width: 40%;
+}
+.footer {
+  display: flex;
+  /* flex: 1; */
+  padding: 2rem 0;
+  border-top: 1px solid #eaeaea;
+  justify-content: center;
+  align-items: center;
+}
+
+.logo {
+  height: 1em;
+  margin-left: 0.5rem;
+}
+
+@media screen and (min-width: 300px) and (max-width: 768px) {
+  .myParentDiv {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .childDiv2 {
+    width: 100%;
+    height: 85vmin;
+  }
+  .childDiv1 {
+    width: 100%;
+  }
+  .myInput {
+    font-size: 3.5vmin;
+    width: 48vmin;
+    padding: 4vmin;
+  }
+  .myButton {
+    font-size: 2.8vmin;
+    width: 33vmin;
+    padding: 3vmin 1vmin;
+  }
+  .myH3 {
+    font-size: 4vmin;
+  }
+  .myH1 {
+    font-size: 7.5vmin;
+  }
+}
+@media screen and (min-width:769px) and (max-width:1024px) {
+    .myButton {
+        font-size: 1.7vmax;
+        width: 17vmax;
+        padding: 1.3vmax 1vmax;
+      }
+
+      .myInput {
+        font-size: 1.5vmax;
+        width: 32vmax;
+        padding: 1.7vmax;
+      }
+      .childDiv2 {
+        height: 45vmax;
+      }
+      .myH3 {
+        font-size: 2vmax;
+      }
+      .myH1 {
+        font-size: 4vmax;
+      }
+      .footer {
+        margin-top: 20vmin;
+      }
+}
+@media screen and (min-width:1024px) and (max-width:1440px) {
+    .myButton {
+        font-size: 1.3vmax;
+        width: 15vmax;
+        padding: 1.2vmax 1vmax;
+      }
+
+      .myInput {
+        font-size: 1.2vmax;
+        width: 30vmax;
+        padding: 1.4vmax;
+      }
+      .childDiv2 {
+        height: 41vmax;
+      }
+      .myH3 {
+        font-size: 1.5vmax;
+      }
+      .myH1 {
+        font-size: 3.4vmax;
+      }
+      .footer {
+        margin-top: 20vmin;
+      }
+}

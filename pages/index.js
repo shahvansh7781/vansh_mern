@@ -1,6 +1,7 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -12,58 +13,106 @@ export default function Home() {
       </Head>
 
       <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
+        <h1 className={styles.myUncode}>Uncode.</h1>
+        <p>
+          A Central Hub where teams can work,plan <br /> and achieve amazing
+          things together.
         </p>
+        <div className={styles.myForm}>
+          <div>
+            <Image src="/landing_pic.jpg" alt="" height={780} width={970} />
+          </div>
 
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
+          <div className={styles.headingDiv}>
+            <div className={styles.infoDiv}>
+              <h3 className={styles.myH3}>Start For Free</h3>
+              <h1 className={styles.myH1}>Sign up to Uncode.</h1>
+              <h3 className={styles.myH3}>
+                <span style={{ color: "#e3866a" }}> Already a member? </span>
+                <Link  href="/login">
+                <a style={{ color: "#446e90" }}>
+                  Log in
+                </a>
+                </Link>
+                
+              </h3>
+            </div>
+            <div className={styles.parentDiv}>
+              <div className={styles.childDiv}>
+                <div>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Enter First Name"
+                    className={styles.myInput}
+                  />
+                </div>
 
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Enter Phone Number"
+                  className={styles.myInput}
+                />
 
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
+                <input
+                  type="password"
+                  name=""
+                  id=""
+                  placeholder="Enter Password"
+                  className={styles.myInput}
+                />
+              </div>
+              <div className={styles.childDiv}>
+                <input
+                  type="text"
+                  name=""
+                  id=""
+                  placeholder="Enter Last Name"
+                  className={styles.myInput}
+                />
 
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+                <input
+                  type="email"
+                  name=""
+                  id=""
+                  placeholder="Enter Email"
+                  className={styles.myInput}
+                />
+
+                <input
+                  type="password"
+                  name=""
+                  id=""
+                  placeholder="Enter Confirm Password"
+                  className={styles.myInput}
+                />
+              </div>
+            </div>
+            <div className={styles.buttonDiv}>
+              <a href="#" className={styles.myButton}>
+                Create an Account
+              </a>
+
+              {/* <a href="#" className={styles.myButton}>
+                Sign Up With Google
+              </a> */}
+            </div>
+          </div>
         </div>
       </main>
 
       <footer className={styles.footer}>
-        <a
-          href="https://vercel.com?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <span className={styles.logo}>
-            <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
-          </span>
-        </a>
+   
+        Made With
+        <span className={styles.logo}>
+          <Image src="/heart32.png" alt="" width={18} height={18} />
+        </span>
+        &nbsp; by Vansh
+      
       </footer>
     </div>
-  )
+  );
 }
