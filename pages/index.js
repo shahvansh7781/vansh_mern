@@ -1,9 +1,38 @@
 import Head from "next/head";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
-import Link from 'next/link'
+import Link from "next/link";
+import { useState } from "react";
 
 export default function Home() {
+  const [userDetails, setuserDetails] = useState({
+    firstName: "",
+    lastName: "",
+    phoneNumber: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+  });
+
+  const submitHandler = async (event) => {
+    const response = await fetch("/api/register", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+       firstName: userDetails.firstName,
+       lastName: userDetails.lastName,
+       phoneNumber: userDetails.phoneNumber,
+       email: userDetails.email,
+       password: userDetails.password,
+       confirmPassword: userDetails.confirmPassword,
+      }),
+    });
+
+    // const data = await response.json();
+    // console.log(data);
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -29,12 +58,9 @@ export default function Home() {
               <h1 className={styles.myH1}>Sign up to Uncode.</h1>
               <h3 className={styles.myH3}>
                 <span style={{ color: "#e3866a" }}> Already a member? </span>
-                <Link  href="/login">
-                <a style={{ color: "#446e90" }}>
-                  Log in
-                </a>
+                <Link href="/login">
+                  <a style={{ color: "#446e90" }}>Log in</a>
                 </Link>
-                
               </h3>
             </div>
             <div className={styles.parentDiv}>
@@ -45,6 +71,13 @@ export default function Home() {
                     name=""
                     id=""
                     placeholder="Enter First Name"
+                    value={userDetails.firstName}
+                    onChange={(e) => {
+                      setuserDetails({
+                        ...userDetails,
+                        firstName: e.target.value,
+                      });
+                    }}
                     className={styles.myInput}
                   />
                 </div>
@@ -54,6 +87,13 @@ export default function Home() {
                   name=""
                   id=""
                   placeholder="Enter Phone Number"
+                  value={userDetails.phoneNumber}
+                  onChange={(e) => {
+                    setuserDetails({
+                      ...userDetails,
+                      phoneNumber: e.target.value,
+                    });
+                  }}
                   className={styles.myInput}
                 />
 
@@ -62,6 +102,13 @@ export default function Home() {
                   name=""
                   id=""
                   placeholder="Enter Password"
+                  value={userDetails.password}
+                  onChange={(e) => {
+                    setuserDetails({
+                      ...userDetails,
+                      password: e.target.value,
+                    });
+                  }}
                   className={styles.myInput}
                 />
               </div>
@@ -71,6 +118,13 @@ export default function Home() {
                   name=""
                   id=""
                   placeholder="Enter Last Name"
+                  value={userDetails.lastName}
+                  onChange={(e) => {
+                    setuserDetails({
+                      ...userDetails,
+                      lastName: e.target.value,
+                    });
+                  }}
                   className={styles.myInput}
                 />
 
@@ -79,6 +133,13 @@ export default function Home() {
                   name=""
                   id=""
                   placeholder="Enter Email"
+                  value={userDetails.email}
+                  onChange={(e) => {
+                    setuserDetails({
+                      ...userDetails,
+                      email: e.target.value,
+                    });
+                  }}
                   className={styles.myInput}
                 />
 
@@ -86,18 +147,26 @@ export default function Home() {
                   type="password"
                   name=""
                   id=""
+                  value={userDetails.confirmPassword}
+                  onChange={(e) => {
+                    setuserDetails({
+                      ...userDetails,
+                      confirmPassword: e.target.value,
+                    });
+                  }}
                   placeholder="Enter Confirm Password"
                   className={styles.myInput}
                 />
               </div>
             </div>
             <div className={styles.buttonDiv}>
-              <a href="#" className={styles.myButton}>
+              <Link href="/api/register" >
+              <a className={styles.myButton} onClick={submitHandler}>
                 Create an Account
               </a>
-
-              {/* <a href="#" className={styles.myButton}>
-                Sign Up With Google
+              </Link>
+              {/* <a href="/api/register" className={styles.myButton} onClick={submitHandler}>
+                Create an Account
               </a> */}
             </div>
           </div>
@@ -105,13 +174,11 @@ export default function Home() {
       </main>
 
       <footer className={styles.footer}>
-   
         Made With
         <span className={styles.logo}>
           <Image src="/heart32.png" alt="" width={18} height={18} />
         </span>
         &nbsp; by Vansh
-      
       </footer>
     </div>
   );
