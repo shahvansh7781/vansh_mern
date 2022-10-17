@@ -15,23 +15,39 @@ export default function Home() {
   });
 
   const submitHandler = async (event) => {
+    event.preventDefault();
     const response = await fetch("/api/register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-       firstName: userDetails.firstName,
-       lastName: userDetails.lastName,
-       phoneNumber: userDetails.phoneNumber,
-       email: userDetails.email,
-       password: userDetails.password,
-       confirmPassword: userDetails.confirmPassword,
+        // firstName: userDetails.firstName,
+        // lastName: userDetails.lastName,
+        // phoneNumber: userDetails.phoneNumber,
+        // email: userDetails.email,
+        // password: userDetails.password,
+        // confirmPassword: userDetails.confirmPassword,
+        ...userDetails,
       }),
     });
 
-    // const data = await response.json();
-    // console.log(data);
+    const data = await response.json();
+    console.log(data);
+    if (!data.success) {
+      alert(data.error);
+    }
+    else{
+      alert(data.message);
+    }
+    setuserDetails({
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+    });
   };
   return (
     <div className={styles.container}>
@@ -63,112 +79,117 @@ export default function Home() {
                 </Link>
               </h3>
             </div>
-            <div className={styles.parentDiv}>
-              <div className={styles.childDiv}>
-                <div>
+            <form method="post" onSubmit={submitHandler}>
+              <div className={styles.parentDiv}>
+                <div className={styles.childDiv}>
+                  <div>
+                    <input
+                      type="text"
+                      name=""
+                      id=""
+                      placeholder="Enter First Name"
+                      value={userDetails.firstName}
+                      onChange={(e) => {
+                        setuserDetails({
+                          ...userDetails,
+                          firstName: e.target.value,
+                        });
+                      }}
+                      className={styles.myInput}
+                    />
+                  </div>
+
                   <input
                     type="text"
                     name=""
                     id=""
-                    placeholder="Enter First Name"
-                    value={userDetails.firstName}
+                    placeholder="Enter Phone Number"
+                    value={userDetails.phoneNumber}
                     onChange={(e) => {
                       setuserDetails({
                         ...userDetails,
-                        firstName: e.target.value,
+                        phoneNumber: e.target.value,
+                      });
+                    }}
+                    className={styles.myInput}
+                  />
+
+                  <input
+                    type="password"
+                    name=""
+                    id=""
+                    placeholder="Enter Password"
+                    value={userDetails.password}
+                    onChange={(e) => {
+                      setuserDetails({
+                        ...userDetails,
+                        password: e.target.value,
                       });
                     }}
                     className={styles.myInput}
                   />
                 </div>
+                <div className={styles.childDiv}>
+                  <input
+                    type="text"
+                    name=""
+                    id=""
+                    placeholder="Enter Last Name"
+                    value={userDetails.lastName}
+                    onChange={(e) => {
+                      setuserDetails({
+                        ...userDetails,
+                        lastName: e.target.value,
+                      });
+                    }}
+                    className={styles.myInput}
+                  />
 
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Enter Phone Number"
-                  value={userDetails.phoneNumber}
-                  onChange={(e) => {
-                    setuserDetails({
-                      ...userDetails,
-                      phoneNumber: e.target.value,
-                    });
-                  }}
-                  className={styles.myInput}
-                />
+                  <input
+                    type="email"
+                    name=""
+                    id=""
+                    placeholder="Enter Email"
+                    value={userDetails.email}
+                    onChange={(e) => {
+                      setuserDetails({
+                        ...userDetails,
+                        email: e.target.value,
+                      });
+                    }}
+                    className={styles.myInput}
+                  />
 
-                <input
-                  type="password"
-                  name=""
-                  id=""
-                  placeholder="Enter Password"
-                  value={userDetails.password}
-                  onChange={(e) => {
-                    setuserDetails({
-                      ...userDetails,
-                      password: e.target.value,
-                    });
-                  }}
-                  className={styles.myInput}
-                />
+                  <input
+                    type="password"
+                    name=""
+                    id=""
+                    value={userDetails.confirmPassword}
+                    onChange={(e) => {
+                      setuserDetails({
+                        ...userDetails,
+                        confirmPassword: e.target.value,
+                      });
+                    }}
+                    placeholder="Enter Confirm Password"
+                    className={styles.myInput}
+                  />
+                </div>
               </div>
-              <div className={styles.childDiv}>
-                <input
-                  type="text"
-                  name=""
-                  id=""
-                  placeholder="Enter Last Name"
-                  value={userDetails.lastName}
-                  onChange={(e) => {
-                    setuserDetails({
-                      ...userDetails,
-                      lastName: e.target.value,
-                    });
-                  }}
-                  className={styles.myInput}
-                />
-
-                <input
-                  type="email"
-                  name=""
-                  id=""
-                  placeholder="Enter Email"
-                  value={userDetails.email}
-                  onChange={(e) => {
-                    setuserDetails({
-                      ...userDetails,
-                      email: e.target.value,
-                    });
-                  }}
-                  className={styles.myInput}
-                />
-
-                <input
-                  type="password"
-                  name=""
-                  id=""
-                  value={userDetails.confirmPassword}
-                  onChange={(e) => {
-                    setuserDetails({
-                      ...userDetails,
-                      confirmPassword: e.target.value,
-                    });
-                  }}
-                  placeholder="Enter Confirm Password"
-                  className={styles.myInput}
-                />
-              </div>
-            </div>
-            <div className={styles.buttonDiv}>
-              <Link href="/api/register" >
-              <a className={styles.myButton} onClick={submitHandler}>
-                Create an Account
-              </a>
-              </Link>
-              {/* <a href="/api/register" className={styles.myButton} onClick={submitHandler}>
+              <div className={styles.buttonDiv}>
+                {/* <Link href="/api/register">
+                <a className={styles.myButton} onClick={submitHandler}>
+                  Create an Account
+                </a>
+              </Link> */}
+                <button type="submit" className={styles.myButton}>
+                  Create an Account
+                </button>
+                {/* <a href="/api/register" className={styles.myButton} onClick={submitHandler}>
                 Create an Account
               </a> */}
-            </div>
+              </div>
+            </form>
           </div>
         </div>
       </main>

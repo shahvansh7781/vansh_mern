@@ -67,6 +67,7 @@
   background-color: #e0ebea;
   width: 14vmax;
   text-align: center;
+  border: none;
 }
 .myButton:hover {
   /* background: #3cb0fd; */

@@ -10,7 +10,6 @@ const userSchema = new mongoose.Schema({
   },
   lastName: {
     type: String,
-    minLength: [4, "Name must be of minimum 4 characters"],
     maxLength: [30, "Name can have maximum 30 characters"],
     required: [true, "Name cannot be empty!"],
   },
@@ -21,7 +20,7 @@ const userSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    unique: true,
+    unique: [true,"User already Exists!"],
     validate: [validator.isEmail, "Invalid Email Address"],
     required: [true, "Email cannot be empty"],
   },
