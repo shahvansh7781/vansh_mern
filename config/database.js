@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
 
 const connectDB = () => {
-    mongoose.connect("mongodb://localhost:27017/vansh-mern-app").then(()=>{
+    mongoose.connect(process.env.DB_HOST).then(()=>{
         console.log("Database connected successfully")
-    }).catch(()=>{
+    }).catch((err)=>{
+        console.log(err);
         console.log("Database connection was unsuccessful")
     })
 }

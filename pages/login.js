@@ -3,9 +3,11 @@ import React from "react";
 import styles from "../styles/Login.module.css";
 import Link from "next/link";
 import { useState } from "react";
-const Login = () => {
+import { useRouter } from "next/router";
+const Login = ({ token }) => {
+  const router = useRouter();
   const [loginDetails, setloginDetails] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const loginHandler = async (event) => {
@@ -19,17 +21,35 @@ const Login = () => {
     });
 
     const data = await response.json();
-    console.log(data);
-    console.log(data.success);
+    // console.log(data);
+    // console.log(data.success);
     if (!data.success) {
       alert(data.error);
     } else {
-      alert(data.message);
+      // if (token) {
+      //   router.push(`/users/${data.firstName}`)
+      // }
+      // else{
+      //   alert("Invalid token")
+      // }
+    setTimeout(() => {
+      const myObj = Object.values(token)[0];
+      const obj = JSON.parse(myObj);
+      console.log(obj.firstName);
+      if (token && obj.firstName === data.firstName) {
+        router.push(`/users/${data.firstName}`);
+      } else {
+        alert("Login to access this resource");
+      }
+    }, 1000);
+      // console.log(data.message);
+      // console.log(data.token);
+      // alert(data.message);
     }
-    setloginDetails({
-      email: "",
-      password: "",
-    });
+    // setloginDetails({
+    //   username: "",
+    //   password: "",
+    // });
   };
   return (
     <div className={styles.container}>
@@ -40,7 +60,9 @@ const Login = () => {
             <Image src="/login1_next.jpg" width={800} height={850} alt="" />
           </div>
           <div className={styles.childDiv2}>
-            <span className={styles.myH1}>Welcome Back!</span>
+            <span className={styles.myH1}>
+              Welcome <span style={{ color: "#d45472" }}>Back!</span>{" "}
+            </span>
             <div>
               <form
                 method="post"
@@ -53,10 +75,14 @@ const Login = () => {
                   name=""
                   id=""
                   placeholder="Enter Email"
+                  required
                   className={styles.myInput}
-                  value={loginDetails.email}
+                  value={loginDetails.username}
                   onChange={(e) => {
-                    setloginDetails({ ...loginDetails, email: e.target.value });
+                    setloginDetails({
+                      ...loginDetails,
+                      username: e.target.value,
+                    });
                   }}
                 />
                 <input
@@ -64,6 +90,7 @@ const Login = () => {
                   name=""
                   id=""
                   placeholder="Enter Password"
+                  required
                   className={styles.myInput}
                   value={loginDetails.password}
                   onChange={(e) => {
@@ -108,3 +135,12 @@ const Login = () => {
 };
 
 export default Login;
+
+export async function getServerSideProps(context) {
+  const cookies = context.req.cookies;
+  return {
+    props: {
+      token: cookies || "",
+    },
+  };
+}
