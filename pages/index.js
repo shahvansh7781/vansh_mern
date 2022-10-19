@@ -4,8 +4,8 @@ import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { useState } from "react";
 // import { useRouter } from "next/router";
-import { ToastContainer,toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.min.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 
 export default function Home() {
   // const router = useRouter();
@@ -49,7 +49,7 @@ export default function Home() {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
     } else {
       // alert(data.message);
       // router.push("/success");
@@ -62,7 +62,7 @@ export default function Home() {
         draggable: true,
         progress: undefined,
         theme: "dark",
-        });
+      });
       setuserDetails({
         firstName: "",
         lastName: "",
@@ -226,17 +226,9 @@ export default function Home() {
                 </div>
               </div>
               <div className={styles.buttonDiv}>
-                {/* <Link href="/api/register">
-                <a className={styles.myButton} onClick={submitHandler}>
-                  Create an Account
-                </a>
-              </Link> */}
                 <button type="submit" className={styles.myButton}>
                   Create an Account
                 </button>
-                {/* <a href="/api/register" className={styles.myButton} onClick={submitHandler}>
-                Create an Account
-              </a> */}
               </div>
             </form>
           </div>

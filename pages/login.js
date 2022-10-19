@@ -4,6 +4,8 @@ import styles from "../styles/Login.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import Router from "next/router";
+import jwt from "jsonwebtoken";
 const Login = ({ token }) => {
   const router = useRouter();
   const [loginDetails, setloginDetails] = useState({
@@ -26,22 +28,51 @@ const Login = ({ token }) => {
     if (!data.success) {
       alert(data.error);
     } else {
+      // alert(data.message);
+      const sToken = JSON.stringify(token);
+      const myToken = JSON.parse(sToken);
+      // console.log(myToken.token);
+      if (token) {
+        // const sjson = jwt.decode(myToken.token,{complete:true});
+        // console.log(sjson.payload.userId);
+        // console.log(sjson.payload.firstName);
+
+        // console.log(sToken);
+        const myResponse = await fetch("/api/about", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: sToken,
+        });
+        const mydata = await myResponse.json();
+        // console.log(mydata);
+        // const fname = mydata.firstName;
+
+      //  await Router.push({
+      //     pathname: "/about",
+      //     query: {
+      //       fname,
+      //     },
+      //   });
+      router.push("/about")
+      }
       // if (token) {
       //   router.push(`/users/${data.firstName}`)
       // }
       // else{
       //   alert("Invalid token")
       // }
-    setTimeout(() => {
-      const myObj = Object.values(token)[0];
-      const obj = JSON.parse(myObj);
-      console.log(obj.firstName);
-      if (token && obj.firstName === data.firstName) {
-        router.push(`/users/${data.firstName}`);
-      } else {
-        alert("Login to access this resource");
-      }
-    }, 1000);
+      // setTimeout(() => {
+      //   const myObj = Object.values(token)[0];
+      //   const obj = JSON.parse(myObj);
+      //   console.log(obj.firstName);
+      //   if (token && obj.firstName === data.firstName) {
+      //     router.push(`/users/${data.firstName}`);
+      //   } else {
+      //     alert("Login to access this resource");
+      //   }
+      // }, 2000);
       // console.log(data.message);
       // console.log(data.token);
       // alert(data.message);
@@ -100,11 +131,6 @@ const Login = ({ token }) => {
                     });
                   }}
                 />
-                {/* <Link href="/api/login">
-            <a className={styles.myButton} onClick={loginHandler}>
-              Sign In
-            </a>
-            </Link> */}
                 <button type="submit" className={styles.myButton}>
                   Sign In
                 </button>
