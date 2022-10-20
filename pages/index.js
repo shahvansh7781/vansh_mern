@@ -105,7 +105,7 @@ export default function Home() {
               <h1 className={styles.myH1}>Sign up to Uncode.</h1>
               <h3 className={styles.myH3}>
                 <span style={{ color: "#e3866a" }}> Already a member? </span>
-                <Link href="/login">
+                <Link href="https://next-login-register.vercel.app/login">
                   <a style={{ color: "#446e90" }}>Log in</a>
                 </Link>
               </h3>

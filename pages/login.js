@@ -140,7 +140,7 @@ export async function getServerSideProps(context) {
   const cookies = await context.req.cookies;
   let auth;
   if (cookies) {
-    await fetch("http://localhost:3000/api/about", {
+    await fetch("https://next-login-register.vercel.app/api/about", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
