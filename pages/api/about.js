@@ -5,7 +5,6 @@ export default async function handler(req, res) {
   try {
     const userToken = await req.body;
     // const myUserToken = JSON.parse(userToken);
-    // console.log(userToken.token);
     const ujson = jwt.verify(userToken.token, process.env.JWT_SECRET);
     if(!ujson){
       res.status(500).json({

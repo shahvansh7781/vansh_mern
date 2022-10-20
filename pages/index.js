@@ -37,7 +37,6 @@ export default function Home() {
     });
 
     const data = await response.json();
-    console.log(data);
     if (!data.success) {
       toast.error(data.error, {
         position: "top-right",

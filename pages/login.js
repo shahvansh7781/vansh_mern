@@ -4,6 +4,8 @@ import styles from "../styles/Login.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.min.css";
 const Login = ({ token }) => {
   const router = useRouter();
   const [loginDetails, setloginDetails] = useState({
@@ -31,7 +33,16 @@ const Login = ({ token }) => {
 
     const data = await response.json();
     if (!data.success) {
-      alert(data.error);
+      toast.error(data.error, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     } else {
       if (token) {
         router.push("/about");
@@ -43,7 +54,20 @@ const Login = ({ token }) => {
     // });
   };
   return (
+    
     <div className={styles.container}>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
       <main>
         <h1 style={{ marginLeft: "5vmax", color: "#446e90" }}>Uncode.</h1>
         <div className={styles.myParentDiv}>

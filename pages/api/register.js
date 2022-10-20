@@ -1,16 +1,9 @@
-import passport from "passport";
 import connectDB from "../../config/database";
-import passportAuth from "../../middleware/passportAuth";
-import passportSession from "../../middleware/passportSession";
 import User from "../../models/userModel";
 const validator = require("validator");
 const express = require("express");
 const app = express();
 app.use(express.json());
-
-// passportSession();
-
-// passportAuth();
 
 connectDB();
 

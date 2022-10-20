@@ -1,11 +1,9 @@
 import passport from "passport";
 import connectDB from "../../config/database";
 import passportAuth from "../../middleware/passportAuth";
-import passportSession from "../../middleware/passportSession";
-import User from "../../models/userModel";
 const jwt = require("jsonwebtoken");
 import cookie from "cookie";
-// passportSession();
+
 
 passportAuth();
 connectDB();
@@ -35,7 +33,6 @@ export default function handler(req, res) {
               httpOnly: true,
               sameSite: "strict",
               path: "/",
-              maxAge: 24 * 60 * 60 * 1000,
             })
           );
           res
@@ -49,7 +46,6 @@ export default function handler(req, res) {
       }
     })(req, res);
   } catch (err) {
-    console.log(err);
     res.status(500).json({
       success: false,
       error: err.message,
