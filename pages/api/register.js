@@ -26,6 +26,13 @@ export default function handler(req, res) {
           success: false,
           error: "Invalid Email Address",
         });
+      } else if (
+        req.body.username === User.findOne({ username: req.body.username })
+      ) {
+        res.status(500).json({
+          success: false,
+          error: "User already exists",
+        });
       } else {
         User.register(user, req.body.password, function (err, user1) {
           if (err) {
