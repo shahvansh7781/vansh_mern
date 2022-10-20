@@ -3,12 +3,10 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Link from "next/link";
 import { useState } from "react";
-// import { useRouter } from "next/router";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 
 export default function Home() {
-  // const router = useRouter();
   const [userDetails, setuserDetails] = useState({
     firstName: "",
     lastName: "",
@@ -17,7 +15,15 @@ export default function Home() {
     password: "",
     confirmPassword: "",
   });
-
+  const changeHandler = (event) => {
+    const { name, value } = event.target;
+    setuserDetails((preuserDetails) => {
+      return {
+        ...preuserDetails,
+        [name]: value,
+      };
+    });
+  };
   const submitHandler = async (event) => {
     event.preventDefault();
     const response = await fetch("/api/register", {
@@ -26,12 +32,6 @@ export default function Home() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        // firstName: userDetails.firstName,
-        // lastName: userDetails.lastName,
-        // phoneNumber: userDetails.phoneNumber,
-        // email: userDetails.email,
-        // password: userDetails.password,
-        // confirmPassword: userDetails.confirmPassword,
         ...userDetails,
       }),
     });
@@ -39,7 +39,6 @@ export default function Home() {
     const data = await response.json();
     console.log(data);
     if (!data.success) {
-      // alert(data.error);
       toast.error(data.error, {
         position: "top-right",
         autoClose: 5000,
@@ -51,8 +50,6 @@ export default function Home() {
         theme: "dark",
       });
     } else {
-      // alert(data.message);
-      // router.push("/success");
       toast.success(data.message, {
         position: "top-right",
         autoClose: 5000,
@@ -120,106 +117,76 @@ export default function Home() {
                   <div>
                     <input
                       type="text"
-                      name=""
+                      name="firstName"
                       id=""
                       placeholder="Enter First Name"
                       required
                       minLength="3"
                       maxLength="30"
                       value={userDetails.firstName}
-                      onChange={(e) => {
-                        setuserDetails({
-                          ...userDetails,
-                          firstName: e.target.value,
-                        });
-                      }}
+                      onChange={changeHandler}
                       className={styles.myInput}
                     />
                   </div>
 
                   <input
                     type="text"
-                    name=""
+                    name="phoneNumber"
                     id=""
                     placeholder="Enter Phone Number"
                     required
                     pattern="[6-9]{1}[0-9]{9}"
                     title="Phone Number should start from 6-9 and must be of 10 digits"
                     value={userDetails.phoneNumber}
-                    onChange={(e) => {
-                      setuserDetails({
-                        ...userDetails,
-                        phoneNumber: e.target.value,
-                      });
-                    }}
+                    onChange={changeHandler}
                     className={styles.myInput}
                   />
 
                   <input
                     type="password"
-                    name=""
+                    name="password"
                     id=""
                     placeholder="Enter Password"
                     required
                     value={userDetails.password}
                     minLength="8"
                     title="Password should be of minimum 8 characters"
-                    onChange={(e) => {
-                      setuserDetails({
-                        ...userDetails,
-                        password: e.target.value,
-                      });
-                    }}
+                    onChange={changeHandler}
                     className={styles.myInput}
                   />
                 </div>
                 <div className={styles.childDiv}>
                   <input
                     type="text"
-                    name=""
+                    name="lastName"
                     id=""
                     placeholder="Enter Last Name"
                     maxLength="30"
                     required
                     value={userDetails.lastName}
-                    onChange={(e) => {
-                      setuserDetails({
-                        ...userDetails,
-                        lastName: e.target.value,
-                      });
-                    }}
+                    onChange={changeHandler}
                     className={styles.myInput}
                   />
 
                   <input
                     type="email"
-                    name=""
+                    name="username"
                     id=""
                     placeholder="Enter Email"
                     required
                     value={userDetails.username}
-                    onChange={(e) => {
-                      setuserDetails({
-                        ...userDetails,
-                        username: e.target.value,
-                      });
-                    }}
+                    onChange={changeHandler}
                     className={styles.myInput}
                   />
 
                   <input
                     type="password"
-                    name=""
+                    name="confirmPassword"
                     id=""
                     value={userDetails.confirmPassword}
                     required
                     minLength="8"
-                    onChange={(e) => {
-                      setuserDetails({
-                        ...userDetails,
-                        confirmPassword: e.target.value,
-                      });
-                    }}
+                    onChange={changeHandler}
                     placeholder="Enter Confirm Password"
                     className={styles.myInput}
                   />

@@ -4,14 +4,21 @@ import styles from "../styles/Login.module.css";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import Router from "next/router";
-import jwt from "jsonwebtoken";
 const Login = ({ token }) => {
   const router = useRouter();
   const [loginDetails, setloginDetails] = useState({
     username: "",
     password: "",
   });
+  const changeHandler = (event) => {
+    setloginDetails((prelogindetails) => {
+      const { name, value } = event.target;
+      return {
+        ...prelogindetails,
+        [name]: value,
+      };
+    });
+  };
   const loginHandler = async (event) => {
     event.preventDefault();
     const response = await fetch("/api/login", {
@@ -23,59 +30,12 @@ const Login = ({ token }) => {
     });
 
     const data = await response.json();
-    // console.log(data);
-    // console.log(data.success);
     if (!data.success) {
       alert(data.error);
     } else {
-      // alert(data.message);
-      const sToken = JSON.stringify(token);
-      const myToken = JSON.parse(sToken);
-      // console.log(myToken.token);
       if (token) {
-        // const sjson = jwt.decode(myToken.token,{complete:true});
-        // console.log(sjson.payload.userId);
-        // console.log(sjson.payload.firstName);
-
-        // console.log(sToken);
-        const myResponse = await fetch("/api/about", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: sToken,
-        });
-        const mydata = await myResponse.json();
-        // console.log(mydata);
-        // const fname = mydata.firstName;
-
-      //  await Router.push({
-      //     pathname: "/about",
-      //     query: {
-      //       fname,
-      //     },
-      //   });
-      router.push("/about")
+        router.push("/about");
       }
-      // if (token) {
-      //   router.push(`/users/${data.firstName}`)
-      // }
-      // else{
-      //   alert("Invalid token")
-      // }
-      // setTimeout(() => {
-      //   const myObj = Object.values(token)[0];
-      //   const obj = JSON.parse(myObj);
-      //   console.log(obj.firstName);
-      //   if (token && obj.firstName === data.firstName) {
-      //     router.push(`/users/${data.firstName}`);
-      //   } else {
-      //     alert("Login to access this resource");
-      //   }
-      // }, 2000);
-      // console.log(data.message);
-      // console.log(data.token);
-      // alert(data.message);
     }
     // setloginDetails({
     //   username: "",
@@ -103,33 +63,23 @@ const Login = ({ token }) => {
               >
                 <input
                   type="email"
-                  name=""
+                  name="username"
                   id=""
                   placeholder="Enter Email"
                   required
                   className={styles.myInput}
                   value={loginDetails.username}
-                  onChange={(e) => {
-                    setloginDetails({
-                      ...loginDetails,
-                      username: e.target.value,
-                    });
-                  }}
+                  onChange={changeHandler}
                 />
                 <input
                   type="password"
-                  name=""
+                  name="password"
                   id=""
                   placeholder="Enter Password"
                   required
                   className={styles.myInput}
                   value={loginDetails.password}
-                  onChange={(e) => {
-                    setloginDetails({
-                      ...loginDetails,
-                      password: e.target.value,
-                    });
-                  }}
+                  onChange={changeHandler}
                 />
                 <button type="submit" className={styles.myButton}>
                   Sign In
@@ -163,10 +113,23 @@ const Login = ({ token }) => {
 export default Login;
 
 export async function getServerSideProps(context) {
-  const cookies = context.req.cookies;
+  const cookies = await context.req.cookies;
+  let auth;
+  if (cookies) {
+    await fetch("http://localhost:3000/api/about", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(cookies),
+    });
+    auth = true;
+  } else {
+    auth = false;
+  }
   return {
     props: {
-      token: cookies || "",
+      token: auth || "",
     },
   };
 }

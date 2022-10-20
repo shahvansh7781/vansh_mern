@@ -3,7 +3,7 @@ import User from "../../models/userModel";
 const jwt = require("jsonwebtoken");
 export default async function handler(req, res) {
   try {
-    const userToken = req.body;
+    const userToken = await req.body;
     // const myUserToken = JSON.parse(userToken);
     // console.log(userToken.token);
     const ujson = jwt.verify(userToken.token, process.env.JWT_SECRET);
