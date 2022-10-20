@@ -48,7 +48,7 @@ const About = ({ token }) => {
     });
     setauth(false);
     alert("Successfully logged out!");
-    router.push("/login");
+    router.push("https://next-login-register.vercel.app/login");
   };
   let mylog;
   if (auth) {
@@ -74,7 +74,7 @@ const About = ({ token }) => {
     mylog = (
       <div>
         <h1 style={{ color: "#446e90" }}>{notLoggedin}</h1>
-        <Link href="/login">
+        <Link href="https://next-login-register.vercel.app/login">
           <button className={styles.myButton}>Log in</button>
         </Link>
       </div>
