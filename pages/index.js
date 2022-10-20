@@ -26,48 +26,48 @@ export default function Home() {
   };
   const submitHandler = async (event) => {
     event.preventDefault();
-    const response = await fetch("/api/register", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        ...userDetails,
-      }),
-    });
-
-    const data = await response.json();
-    if (!data.success) {
-      toast.error(data.error, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          ...userDetails,
+        }),
       });
-    } else {
-      toast.success(data.message, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-      });
-      setuserDetails({
-        firstName: "",
-        lastName: "",
-        phoneNumber: "",
-        username: "",
-        password: "",
-        confirmPassword: "",
-      });
-    }
+  
+      const data = await response.json();
+      if (!data.success) {
+        toast.error(data.error, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+      } else {
+        toast.success(data.message, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setuserDetails({
+          firstName: "",
+          lastName: "",
+          phoneNumber: "",
+          username: "",
+          password: "",
+          confirmPassword: "",
+        });
+      }
   };
   return (
     <div className={styles.container}>
