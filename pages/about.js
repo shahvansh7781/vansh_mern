@@ -15,7 +15,7 @@ const About = ({ token }) => {
   const [auth, setauth] = useState(null);
   useEffect(() => {
     dataHandler();
-  }, []);
+  }, [token]);
   const dataHandler = async () => {
         try {
         const myResponse = await fetch("/api/about", {
